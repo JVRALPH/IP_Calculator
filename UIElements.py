@@ -12,7 +12,7 @@ class UIElements:
         page.vertical_alignment = 'center'
         page.padding=0
         page.window_resizable = False
-        page.window_left
+        page.window_center()
 
     btn_calcular=ElevatedButton(
         content=Text(
@@ -34,7 +34,7 @@ class UIElements:
 
     sub_dropdown=Dropdown(
         prefix_icon=icons.ONETWOTHREE_OUTLINED,
-        label="Subfijo /",
+        label="Prefijo '/'",
         width=280,
         height=90,
         border='underline',
