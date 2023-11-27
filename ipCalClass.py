@@ -217,10 +217,10 @@ class ipCalClass(object):
         self.lastIPInt = '{}.{}.{}.{}'.format(self.lastIP[0], self.lastIP[1],self.lastIP[2], self.lastIP[3])
 
         if self.IP_masc == 32:
-            host_route = 'Host route - Single host'
+            host_route = 'Ruta de host: host único'
             return host_route, self.ip_calc_int(), 'None'
         elif self.IP_masc == 31:
-            point_to_point = 'Point to Point (RFC 3021) - Two IP addresses, only valid if zero-subnet is enabled'
+            point_to_point = 'Punto a punto (RFC 3021): dos direcciones IP, solo válidas si la subred cero está habilitada'
             return point_to_point, self.netIDInt, self.broadcastInt
         else:
             return '', self.firstIPInt, self.lastIPInt
@@ -242,8 +242,8 @@ class ipCalClass(object):
             DataColumn(ft.Text("Nombre")),
             DataColumn(ft.Text("Informacion")),
         ]
-        tabla.rows=[
-                DataRow(
+        ex_tab = (
+            DataRow(
                     cells=[
                         DataCell(ft.Text('Direccion IP:')),
                         DataCell(ft.Text(' {:15} -  {:35}'.format(self.ip_calc_int(), self.ip_calc_bin()))),
@@ -263,7 +263,7 @@ class ipCalClass(object):
                 ),
                 DataRow(
                     cells=[
-                        DataCell(ft.Text('Network:')),
+                        DataCell(ft.Text('Direccion subred:')),
                         DataCell(ft.Text(' {:15} -  {:35}'.format(self.calc_net_int(), self.calc_net_bin()))),
                     ],
                 ),
@@ -291,8 +291,20 @@ class ipCalClass(object):
                         DataCell(ft.Text(' {}  '.format(self.obtener_designacion()))),
                     ],
                 ),
-        ]
-        
+        )
         temp = self.calc_rango()
-        UIE.UIElements.ip_pri_valida.value = "Primera ip valida: "+temp[1]
-        UIE.UIElements.ip_ult_valida.value = "Utima ip valida: "+temp[2]
+        new_rows=(
+            DataRow(
+                cells=[
+                    DataCell(ft.Text('Primera ip valida:')),
+                    DataCell(ft.Text(''+temp[1])),
+                ],
+            ),
+            DataRow(
+                cells=[
+                    DataCell(ft.Text('Utima ip valida:')),
+                    DataCell(ft.Text(''+temp[2])),
+                ],
+            ),
+        )
+        tabla.rows=ex_tab+new_rows

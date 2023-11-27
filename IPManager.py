@@ -8,6 +8,12 @@ ip_pattern = re.compile(ip_regex)
 class IPManager:
 
     @staticmethod
+    def btn_clear_click(e,page):
+        UIE.UIElements.ip_txtField.value=None
+        UIE.UIElements.sub_dropdown.value=None
+        page.update()
+
+    @staticmethod
     def validate_ip(ip_value):
         return ip_pattern.match(ip_value)
 

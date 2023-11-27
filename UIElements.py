@@ -7,21 +7,17 @@ class UIElements:
     def page_settings(page):
         page.window_width=1000
         page.window_height=800
-        page.window_title_bar_hidden=True
+        page.window_min_width=600
+        page.window_min_height=800
         page.horizontal_alignment = 'center'
         page.vertical_alignment = 'center'
         page.padding=0
-        page.window_resizable = False
+        page.window_resizable = True
         page.window_center()
+        page.window_to_front()
 
-    btn_calcular=ElevatedButton(
-        content=Text(
-            "Calcular",
-            color='white',
-            weight='w500',
-        ),width=280,bgcolor='black'
-    )
     ip_txtField =TextField(
+        tooltip="Ingrese una IP valida ej. 192.158.1.38",
         width=280,
         height=70,
         hint_text='IP',
@@ -34,6 +30,7 @@ class UIElements:
 
     sub_dropdown=Dropdown(
         prefix_icon=icons.ONETWOTHREE_OUTLINED,
+        tooltip="Seleccione prefijo de la red",
         label="Prefijo '/'",
         width=280,
         height=90,
@@ -50,6 +47,7 @@ class UIElements:
         text_align='center',
     )
     ip_pri_valida=Text(
+        
         width=800,
         size=20,
         weight='w900',
@@ -65,6 +63,21 @@ class UIElements:
     table_info = DataTable(
         column_spacing=50,
     )
+
+    btn_clear_txtf = IconButton(
+        icon=icons.RESTORE_FROM_TRASH_OUTLINED,
+        icon_color="#869F93",
+        icon_size=30,
+        tooltip="Limpiar campos",
+    ) 
+    btn_calcular=ElevatedButton(
+        content=Text(
+            "Calcular",
+            color='white',
+            weight='w400',
+        ),width=220,bgcolor='black'
+    )
+
 
     form_body = Container(
         Container(
@@ -109,8 +122,12 @@ class UIElements:
                                 padding=padding.only(25,0),
                             ),
                             Container(
-                                btn_calcular,
-                                padding=padding.only(30,50),
+                                Row(
+                                    [
+                                        btn_clear_txtf,
+                                        btn_calcular,
+                                    ]
+                                ),padding=padding.only(30,50),
                             ),
                         ])
                     ),
