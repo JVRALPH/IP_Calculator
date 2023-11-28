@@ -1,10 +1,12 @@
 import flet as ft
 from flet import *
 from math import pi
+import IPManager as IPM
 
 class UIElements:
 
     def page_settings(page):
+        page.window_prevent_close = True
         page.window_width=1000
         page.window_height=800
         page.window_min_width=600
@@ -16,6 +18,7 @@ class UIElements:
         page.window_center()
         page.window_to_front()
 
+    #Estilo de campos a ingresar
     ip_txtField =TextField(
         tooltip="Ingrese una IP valida ej. 192.158.1.38",
         width=280,
@@ -27,7 +30,6 @@ class UIElements:
         prefix_icon=icons.COMPUTER_OUTLINED,
         border_radius=11,
     )
-
     sub_dropdown=Dropdown(
         prefix_icon=icons.ONETWOTHREE_OUTLINED,
         tooltip="Seleccione prefijo de la red",
@@ -39,6 +41,8 @@ class UIElements:
             ft.dropdown.Option(str(i)) for i in range(1, 33)
         ],
     )
+    
+    #Estilos de textos
     ip_text=Text(
         "IP: ",
         width=800,
@@ -60,10 +64,12 @@ class UIElements:
         text_align='center',
     )
 
+    #Estilo de tabla
     table_info = DataTable(
         column_spacing=50,
     )
-
+    
+    #Estilos de botones
     btn_clear_txtf = IconButton(
         icon=icons.RESTORE_FROM_TRASH_OUTLINED,
         icon_color="#869F93",
@@ -77,8 +83,26 @@ class UIElements:
             weight='w400',
         ),width=220,bgcolor='black'
     )
+    btn_confirm=ElevatedButton(
+        text="Si, quiero salir",
+    )
+    btn_deny=ElevatedButton(
+        text="No",
+    )
 
+    #Estilo dialogo confirm exit
+    confirm_dialog = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("Confirmacion"),
+        content=ft.Text("¿Realmente quieres salir de esta aplicación?"),
+        actions=[
+            btn_confirm,
+            btn_deny,
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
 
+    #Estilo page principal
     form_body = Container(
         Container(
             Stack([
@@ -147,6 +171,7 @@ class UIElements:
         gradient=LinearGradient(["#000000","#212825","#435049","#65786E","#869F93"]),
     )
     
+    #Estilo de page tabla
     table_body = Container(
         Container(
             Stack([

@@ -42,11 +42,7 @@ def main(page: Page):
     
     UIE.UIElements.page_settings(page)
     page.add(UIE.UIElements.form_body)
-    #UIE.UIElements.ip_txtField.on_blur = lambda e: IPM.IPManager.validate_ip(e, page)
-    #UIE.UIElements.sub_dropdown.on_blur = lambda e: IPM.IPManager.validate_ip(e, page)
-    UIE.UIElements.btn_calcular.on_click = lambda e: IPM.IPManager.btn_calcular_click(e,page)
-    UIE.UIElements.btn_clear_txtf.on_click = lambda e: IPM.IPManager.btn_clear_click(e,page)
-    
+    IPM.IPManager.events(page)
 
 if __name__ == "__main__":
     ft.app(target=main, assets_dir="assets")
