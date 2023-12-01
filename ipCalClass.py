@@ -240,55 +240,55 @@ class ipCalClass(object):
         tabla = UIE.UIElements.table_info
         tabla.columns=[
             DataColumn(ft.Text("Nombre")),
-            DataColumn(ft.Text("Informacion")),
+            DataColumn(ft.Text("Resultado")),
         ]
         ex_tab = (
             DataRow(
                     cells=[
                         DataCell(ft.Text('Direccion IP:')),
-                        DataCell(ft.Text(' {:15} -  {:35}'.format(self.ip_calc_int(), self.ip_calc_bin()))),
+                        DataCell(ft.Text('{:15}-   {:35}'.format(self.ip_calc_int(), self.ip_calc_bin()))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Mascara de red:')),
-                        DataCell(ft.Text(' {:15} -  {:35}'.format(self.IP_mascDotted, self.calc_masc_bin()))),
+                        DataCell(ft.Text('{:15}-   {:35}'.format(self.IP_mascDotted, self.calc_masc_bin()))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Mascara Wildcard:')),
-                        DataCell(ft.Text(' {:15} -  {:35}'.format(self.calc_wilc_int(), self.calc_wilnet_bin()))),
+                        DataCell(ft.Text('{:15}-   {:35}'.format(self.calc_wilc_int(), self.calc_wilnet_bin()))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Direccion subred:')),
-                        DataCell(ft.Text(' {:15} -  {:35}'.format(self.calc_net_int(), self.calc_net_bin()))),
+                        DataCell(ft.Text('{:15}-   {:35}'.format(self.calc_net_int(), self.calc_net_bin()))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Broadcast:')),
-                        DataCell(ft.Text(' {:15} -  {:35}'.format(self.calc_broad_int(), self.calc_broad_bin()))),
+                        DataCell(ft.Text('{:15}  -   {:35}'.format(self.calc_broad_int(), self.calc_broad_bin()))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('# de Hosts:')),
-                        DataCell(ft.Text(' {}  '.format(self.calc_host()[0], self.calc_host()[1]))),
+                        DataCell(ft.Text('{}'.format(self.calc_host()[0], self.calc_host()[1]))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Red tipo Clase: ')),
-                        DataCell(ft.Text(' {}  '.format(self.obtener_clase()))),
+                        DataCell(ft.Text('{}'.format(self.obtener_clase()))),
                     ],
                 ),
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Designacion de red :')),
-                        DataCell(ft.Text(' {}  '.format(self.obtener_designacion()))),
+                        DataCell(ft.Text('{}'.format(self.obtener_designacion()))),
                     ],
                 ),
         )

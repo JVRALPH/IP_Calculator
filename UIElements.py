@@ -65,14 +65,16 @@ class UIElements:
     )
 
     #Estilo de tabla
-    table_info = DataTable(
+    table_info = DataTable( 
+        heading_row_color='black',
+        horizontal_lines=ft.border.BorderSide(1, "white"),
         column_spacing=50,
     )
     
     #Estilos de botones
     btn_clear_txtf = IconButton(
         icon=icons.RESTORE_FROM_TRASH_OUTLINED,
-        icon_color="#869F93",
+        icon_color='white',
         icon_size=30,
         tooltip="Limpiar campos",
     ) 
@@ -92,7 +94,7 @@ class UIElements:
 
     #Estilo dialogo confirm exit
     confirm_dialog = ft.AlertDialog(
-        modal=True,
+        modal=False,
         title=ft.Text("Confirmacion"),
         content=ft.Text("¿Realmente quieres salir de esta aplicación?"),
         actions=[
@@ -168,7 +170,11 @@ class UIElements:
         ),
         width=1920,
         height=1080,
-        gradient=LinearGradient(["#000000","#212825","#435049","#65786E","#869F93"]),
+        gradient=LinearGradient(
+            colors=["#0A3431","#2A6858","#6CE5BB"],
+            #rotation=(pi*1.5),
+            rotation=(pi*0.5),
+        ),
     )
     
     #Estilo de page tabla
@@ -207,5 +213,5 @@ class UIElements:
         ),
         width=1920,
         height=1080,
-        gradient=LinearGradient(["#000000","#212825","#435049","#65786E","#869F93"]),
+        gradient=LinearGradient(["#0A3431","#2A6858","#6CE5BB"]),
     )

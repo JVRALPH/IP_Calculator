@@ -44,5 +44,7 @@ def main(page: Page):
     page.add(UIE.UIElements.form_body)
     IPM.IPManager.events(page)
 
-if __name__ == "__main__":
-    ft.app(target=main, assets_dir="assets")
+ft.app(target=main)
+
+#if __name__ == "__main__":
+#   ft.app(target=main, assets_dir="assets")
