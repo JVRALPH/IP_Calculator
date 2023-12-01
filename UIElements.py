@@ -3,8 +3,10 @@ from flet import *
 from math import pi
 import IPManager as IPM
 
+#Clase que maneja los elementos en las vistas
 class UIElements:
 
+    #Configuracion general de pagina
     def page_settings(page):
         page.window_prevent_close = True
         page.window_width=1000
@@ -18,7 +20,7 @@ class UIElements:
         page.window_center()
         page.window_to_front()
 
-    #Estilo de campos a ingresar
+    #Estilo de los campos de entrada
     ip_txtField =TextField(
         tooltip="Ingrese una IP valida ej. 192.158.1.38",
         width=280,
@@ -30,6 +32,8 @@ class UIElements:
         prefix_icon=icons.COMPUTER_OUTLINED,
         border_radius=11,
     )
+
+    #Configuracion de menu desplegable para el prefijo 
     sub_dropdown=Dropdown(
         prefix_icon=icons.ONETWOTHREE_OUTLINED,
         tooltip="Seleccione prefijo de la red",
@@ -92,7 +96,7 @@ class UIElements:
         text="No",
     )
 
-    #Estilo dialogo confirm exit
+    #Estilo de dialogo de confirmacion para salir
     confirm_dialog = ft.AlertDialog(
         modal=False,
         title=ft.Text("Confirmacion"),
@@ -177,7 +181,7 @@ class UIElements:
         ),
     )
     
-    #Estilo de page tabla
+    #Estilo de la pagina con tabla de informacion
     table_body = Container(
         Container(
             Stack([

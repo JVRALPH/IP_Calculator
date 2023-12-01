@@ -4,6 +4,7 @@ import UIElements as UIE
 
 class ipCalClass(object):
 
+    # Diccionario que almacena las máscaras de red por su valor
     list_masc = {
         0:'0.0.0.0',
         1:'128.0.0.0',
@@ -42,15 +43,17 @@ class ipCalClass(object):
 
     def __init__(self, ip_addr = ''):
 
-        #Iniciallizacion
+        # Inicialización de variables principales        
         self.IP_princ = [0, 0, 0, 0]
         self.IP_masc = 0
         self.IP_masc_int = [0, 0, 0, 0]
 
+        # División de la dirección IP y la máscara de red
         self.masc = ip_addr.split('/')
         self.div_masc = self.masc[1]
         self.IP_div = self.masc[0].split('.')
         
+        # Validación y asignación de valores para la dirección IP principal
         for i in range(len(self.IP_div)):
             self.IP_princ[i] = int(self.IP_div[i])
             if self.IP_princ[i] > 255: 
@@ -58,6 +61,7 @@ class ipCalClass(object):
             if i > 3: 
                 raise ValueError
 
+        # Validación y asignación de la máscara de red
         self.IP_masc = int(self.div_masc)
         if self.IP_masc > 32 or self.IP_masc < 0: 
             raise ValueError
@@ -83,6 +87,7 @@ class ipCalClass(object):
         for index in range(len(self.IP_masc_div)):
             self.IP_masc_int[index] = int(self.IP_masc_div[index])
 
+    # Método para obtener la clase de la dirección IP
     def obtener_clase(self):
         self.ipClass = ''
         test = self.ip_calc_bin()
@@ -98,8 +103,8 @@ class ipCalClass(object):
             self.ipClass = 'E'
         return self.ipClass
 
+    # Método para obtener la designación de la dirección IP
     def obtener_designacion(self):
-
         self.ipDesignation = ''
         test = self.ip_calc_bin()
         if test[0] == '0' and self.IP_masc == 0:
@@ -137,45 +142,48 @@ class ipCalClass(object):
         return self.ipDesignation
 
 
+    # Método para calcular la representación de la IP en formato entero
     def ip_calc_int(self):
         self.intIP = '{}.{}.{}.{}'.format(self.IP_princ[0], self.IP_princ[1],self.IP_princ[2], self.IP_princ[3])
         return self.intIP
 
+    # Metodo para convertir la dirección IP en formato binario.
     def ip_calc_bin(self):
         self.binIP = '{:08b}.{:08b}.{:08b}.{:08b}'.format(self.IP_princ[0], self.IP_princ[1],self.IP_princ[2], self.IP_princ[3])
         return self.binIP
 
-
+    # Metodo para calcular la mascara de red en formato binario
     def calc_masc_bin(self):
         self.binMask = '{:08b}.{:08b}.{:08b}.{:08b}'.format(self.IP_masc_int[0], self.IP_masc_int[1],self.IP_masc_int[2], self.IP_masc_int[3])
         return self.binMask
 
-
+    # Metodo para calcular la mascara de red de la ip en hexadecimal
     def ip_calc_hex(self):
         self.hexIP = '{:02x}.{:02x}.{:02x}.{:02x}'.format(self.IP_princ[0], self.IP_princ[1],self.IP_princ[2], self.IP_princ[3])
         return  self.hexIP
 
-
+    # Metodo para calcular mascara de red en hexadecimal
     def calc_masc_hex(self):
         self.hexMask = '{:02x}.{:02x}.{:02x}.{:02x}'.format(self.IP_masc_div[0], self.IP_masc_div[1],self.IP_masc_div[2], self.IP_masc_div[3])
         return self.hexMask
 
+    # Metodo para calcular la marcara de red en entero
     def calc_net_int(self):
-
         self.netID = [0, 0, 0, 0]
         for index in range(len(self.IP_princ)):
             self.netID[index] = self.IP_princ[index] & self.IP_masc_int[index]
         self.netIDInt = "{}.{}.{}.{}".format(self.netID[0], self.netID[1], self.netID[2], self.netID[3])
         return self.netIDInt
     
+    # Metodo para calcular la mascara de red en binario
     def calc_net_bin(self):
-
         self.netID = [0, 0, 0, 0]
         for index in range(len(self.IP_princ)):
             self.netID[index] = self.IP_princ[index] & self.IP_masc_int[index]
         self.netIDBin = '{:08b}.{:08b}.{:08b}.{:08b}'.format(self.netID[0], self.netID[1],self.netID[2], self.netID[3])
         return self.netIDBin
 
+    # Metodo para calcular el wildcard en enteros
     def calc_wilc_int(self):
         self.wildNet = [0, 0, 0, 0]
         for index in range(len(self.IP_masc_int)):
@@ -183,6 +191,7 @@ class ipCalClass(object):
         self.wildNetInt = '{}.{}.{}.{}'.format(self.wildNet[0], self.wildNet[1], self.wildNet[2],self.wildNet[3])
         return self.wildNetInt
 
+    # Metodo para calcular el wildcard en binario
     def calc_wilnet_bin(self):
         self.wildNet = [0, 0, 0, 0]
         for index in range(len(self.IP_masc_int)):
@@ -190,6 +199,7 @@ class ipCalClass(object):
         self.wildNetBin = '{:08b}.{:08b}.{:08b}.{:08b}'.format(self.wildNet[0], self.wildNet[1],self.wildNet[2], self.wildNet[3])
         return self.wildNetBin
 
+    # Metodo para calcular el broadcast en enteros
     def calc_broad_int(self):
         self.broadcast = [0, 0, 0, 0]
         self.calc_wilc_int()
@@ -198,6 +208,7 @@ class ipCalClass(object):
         self.broadcastInt = '{}.{}.{}.{}'.format(self.broadcast[0], self.broadcast[1],self.broadcast[2], self.broadcast[3])
         return self.broadcastInt
 
+    # Metodo para calcular el broadcast en binarios
     def calc_broad_bin(self):
         self.broadcast = [0, 0, 0, 0]
         self.calc_wilc_int()
@@ -206,16 +217,14 @@ class ipCalClass(object):
         self.broadcastBin = '{:08b}.{:08b}.{:08b}.{:08b}'.format(self.broadcast[0], self.broadcast[1], self.broadcast[2], self.broadcast[3])
         return self.broadcastBin
 
+    # Metodo para calcular el rango de direcciones IP validas
     def calc_rango(self):
         self.firstIP = self.netID
         self.firstIP[3] += 1
-
         self.lastIP = self.broadcast
         self.lastIP[3] -= 1
-
         self.firstIPInt = '{}.{}.{}.{}'.format(self.firstIP[0], self.firstIP[1],self.firstIP[2], self.firstIP[3])
         self.lastIPInt = '{}.{}.{}.{}'.format(self.lastIP[0], self.lastIP[1],self.lastIP[2], self.lastIP[3])
-
         if self.IP_masc == 32:
             host_route = 'Ruta de host: host único'
             return host_route, self.ip_calc_int(), 'None'
@@ -225,6 +234,7 @@ class ipCalClass(object):
         else:
             return '', self.firstIPInt, self.lastIPInt
 
+    # Metodo para calcular cantidad de host y bits de hosts
     def calc_host(self):
         self.hostsBits = 32 - self.IP_masc
         self.hosts = (2 ** self.hostsBits) - 2
@@ -234,7 +244,8 @@ class ipCalClass(object):
             return 2, 1
         if self.IP_masc <= 30:
             return self.hosts, self.hostsBits
-        
+
+    # Metodo para imprimir toda la informacion en la tabla
     def imp_infor(self, ip_addr):
         UIE.UIElements.ip_text.value = "IP: "+ip_addr
         tabla = UIE.UIElements.table_info
