@@ -236,13 +236,14 @@ class ipCalClass(object):
             return self.hosts, self.hostsBits
         
     def imp_infor(self, ip_addr):
+
         UIE.UIElements.ip_text.value = "IP: "+ip_addr
         tabla = UIE.UIElements.table_info
         tabla.columns=[
             DataColumn(ft.Text("Nombre")),
             DataColumn(ft.Text("Informacion")),
         ]
-        tabla.rows=[
+        ex_tab=(
                 DataRow(
                     cells=[
                         DataCell(ft.Text('Direccion IP:')),
@@ -275,7 +276,13 @@ class ipCalClass(object):
                 ),
                 DataRow(
                     cells=[
-                        DataCell(ft.Text('# de Hosts:')),
+                        DataCell(ft.Text('# de Hosts totales:')),
+                        DataCell(ft.Text(' {}  '.format(self.calc_host()[0]+2, self.calc_host()[1]))),
+                    ],
+                ),
+                DataRow(
+                    cells=[
+                        DataCell(ft.Text('# de Hosts utilizables:')),
                         DataCell(ft.Text(' {}  '.format(self.calc_host()[0], self.calc_host()[1]))),
                     ],
                 ),
@@ -291,8 +298,23 @@ class ipCalClass(object):
                         DataCell(ft.Text(' {}  '.format(self.obtener_designacion()))),
                     ],
                 ),
-        ]
+        )
         
         temp = self.calc_rango()
-        UIE.UIElements.ip_pri_valida.value = "Primera ip valida: "+temp[1]
-        UIE.UIElements.ip_ult_valida.value = "Utima ip valida: "+temp[2]
+        
+        new_rows=(
+            DataRow(
+                cells=[
+                    DataCell(ft.Text("Primera ip valida: ")),
+                    DataCell(ft.Text(''+temp[1])),
+                ],
+            ),
+            DataRow(
+                cells=[
+                    DataCell(ft.Text("Ultima ip valida: ")),
+                    DataCell(ft.Text(''+temp[2])),
+                ],
+            ),
+        )
+        tabla.rows=ex_tab+new_rows
+
