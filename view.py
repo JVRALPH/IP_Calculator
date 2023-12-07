@@ -26,7 +26,7 @@ def main(page: Page):
                 View(
                     route='/',
                     padding=0,
-                    scroll='ALWAYS',
+                    scroll='ADAPTIVE',
                     controls=[
                         AppBar(title=Text('Regresar'), bgcolor='black', toolbar_height=40),
                         UIE.UIElements.table_body,

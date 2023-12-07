@@ -45,21 +45,23 @@ class UIElements:
             ft.dropdown.Option(str(i)) for i in range(1, 33)
         ],
     )
-    """sub2_dropdown=Dropdown(
-        prefix_icon=icons.ONETWOTHREE_OUTLINED,
-        tooltip="Seleccione prefijo de la red",
-        label="Prefijo '/'",
-        width=230,
-        height=90,
-        border='underline',
-        options=[
-            ft.dropdown.Option(str(i)) for i in range(1, 33)
-        ],
-    )"""
     
     #Estilos de textos
     ip_text=Text(
         "IP: ",
+        width=800,
+        size=20,
+        weight='w900',
+        text_align='center',
+    )
+    ip_pri_valida=Text(
+        
+        width=800,
+        size=20,
+        weight='w900',
+        text_align='center',
+    )
+    ip_ult_valida=Text(
         width=800,
         size=20,
         weight='w900',
@@ -72,11 +74,7 @@ class UIElements:
         horizontal_lines=ft.border.BorderSide(1, "white"),
         column_spacing=50,
     )
-    table_subred= DataTable( 
-        heading_row_color='black',
-        horizontal_lines=ft.border.BorderSide(1, "white"),
-        column_spacing=10,
-    ) 
+    
     #Estilos de botones
     btn_clear_txtf = IconButton(
         icon=icons.RESTORE_FROM_TRASH_OUTLINED,
@@ -96,14 +94,6 @@ class UIElements:
     )
     btn_deny=ElevatedButton(
         text="No",
-    )
-
-    btn_mostrar_ip=ElevatedButton(
-        content=Text(
-            "Calcular subredes",
-            color='white',
-            weight='w400',
-        ),width=220,bgcolor='black'
     )
 
     #Estilo de dialogo de confirmacion para salir
@@ -136,7 +126,7 @@ class UIElements:
                                 Icon(
                                     ft.icons.CALCULATE_OUTLINED,
                                     size=80,
-                                ),padding=padding.only(130,10),
+                                ),padding=padding.only(130,20),
                             ),
                             Text(
                                 "CALCULADORA IP",
@@ -145,7 +135,7 @@ class UIElements:
                                 weight='w900',
                                 text_align='center',
                             ),
-                            Divider(height=15, color="transparent"),
+                            Divider(height=25, color="transparent"),
                             Text(
                                 "Porfavor ingresa la direccion IP",
                                 width=340,
@@ -159,7 +149,7 @@ class UIElements:
                             ),
                             Container(
                                 sub_dropdown,
-                                padding=padding.only(25,top=0),
+                                padding=padding.only(25,0),
                             ),
                             Container(
                                 Row(
@@ -167,7 +157,7 @@ class UIElements:
                                         btn_clear_txtf,
                                         btn_calcular,
                                     ]
-                                ),padding=padding.only(30,25),
+                                ),padding=padding.only(30,50),
                             ),
                         ])
                     ),
@@ -197,16 +187,28 @@ class UIElements:
             Stack([
                     Container(
                         Column([
-                            ip_text,
+                            Container(
+                                Icon(
+                                    ft.icons.CALCULATE_OUTLINED,
+                                    size=80,
+                                ),padding=padding.only(360,20),
+                            ),
+                                Text(
+                                    "CALCULADORA IP",
+                                    width=800,
+                                    size=20,
+                                    weight='w900',
+                                    text_align='center',
+                                ),
+                                ip_text,
                             Divider(height=25, color="transparent"),
                             table_info,
                             Divider(height=25, color="transparent"),
-                            table_subred,
-                            Divider(height=50, color="transparent"),
+                            ip_pri_valida,
+                            ip_ult_valida,
                         ])
                         ,padding=padding.only(0,20),
                     ),
-                    
             ]),
             padding=40,
             alignment=ft.alignment.top_center,
@@ -217,12 +219,3 @@ class UIElements:
         height=1080,
         gradient=LinearGradient(["#0A3431","#2A6858","#6CE5BB"]),
     )
-
-"""Container(
-    Row(
-        [
-            seg_check_box,
-            sub2_dropdown,
-        ]
-    ),padding=padding.only(left=40,top=0),
-),"""

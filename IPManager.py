@@ -32,7 +32,6 @@ class IPManager:
     def btn_clear_click(e,page):
         UIE.UIElements.ip_txtField.value=None
         UIE.UIElements.sub_dropdown.value=None
-        #UIE.UIElements.sub2_dropdown.value=None
         page.update()
 
     # Método para validar una dirección IP ingresada
